@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",                                  /* Specify the base directory to resolve non-relative module names. */                        /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs",                                /* Specify what module code is generated. */                   /* Specify how TypeScript looks up a file from a given module specifier. */
+    "outDir": "dist",                                   /* Specify an output folder for all emitted files. */          /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */                      /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "strict": true,                                      /* Enable all strict type-checking options. */               /* Skip type checking .d.ts files that are included with TypeScript. */
+    "skipLibCheck": true,
+    "incremental": true,
+    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": true                               /* Skip type checking all .d.ts files. */
+  },
+  "include": ["src/**/*", "__tests__/**/*", "./jest.config.ts", "./config/config.env.ts"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}
