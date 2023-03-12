@@ -7,9 +7,9 @@
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install",
-    "dev": "cross-env NODE-ENV=development tsx watch src/main.ts",
+    "dev": "cross-env NODE-ENV=local tsx watch src/main.ts",
     "prod": "cross-env NODE-ENV=production tsx watch src/main.ts",
-    "start:prod": "rimraf dist && npm run typecheck && node dist/main.js",
+    "start:prod": "cross-env NODE-ENV=production rimraf dist && npm run typecheck && node dist/main.js",
     "typecheck": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,10 +1,37 @@
+import { omit } from 'lodash';
 import { InferSchemaType } from 'mongoose';
 import { UserDocument, UserModel } from 'src/models/user.model';
 
-export const createUser = async (input: InferSchemaType<UserDocument>) => {
+const createUser = async (input: InferSchemaType<UserDocument>) => {
   try {
-    return await UserModel.create(input);
+    const user = await UserModel.create(input);
+    return omit(
+      user.toJSON(),
+      'password',
+      'updatedAt',
+      '__v',
+      'comparePassword'
+    );
   } catch (ex: any) {
     throw new Error(ex);
   }
 };
+
+const validatePassword = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  const user = await UserModel.findOne({ email });
+  if (!user) return false;
+
+  const isValid = await user.comparePassword(password);
+
+  if (!isValid) return false;
+
+  return omit(user.toJSON(), 'password');
+};
+
+export { createUser, validatePassword };

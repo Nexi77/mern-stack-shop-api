@@ -6,6 +6,7 @@ export interface UserDocument {
   email: string;
   name: string;
   password: string;
+  _id: string;
   createdAt: Date;
   updatedAt: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -35,6 +36,6 @@ UserSchema.methods.comparePassword = async function (
   return bcrypt.compare(candidatePassword, this.password).catch(() => false);
 };
 
-const UserModel = model('User', UserSchema);
+const UserModel = model<UserDocument>('User', UserSchema);
 
 export { UserModel };
