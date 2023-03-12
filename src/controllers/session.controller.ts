@@ -1,6 +1,6 @@
 import { envConfig } from 'config/config.env';
 import { Request, Response } from 'express';
-import { createSession } from 'src/services/session.service';
+import { createSession, findSessions } from 'src/services/session.service';
 import { validatePassword } from 'src/services/user.service';
 import { signJWT } from 'src/utils/jwt.utils';
 
@@ -19,4 +19,12 @@ const createUserSessionHandler = async (req: Request, res: Response) => {
   return res.send({ accessToken, refreshToken });
 };
 
-export { createUserSessionHandler };
+const getUserSessionsHandler = async (req: Request, res: Response) => {
+  const userId: string = res.locals.user?._id;
+
+  const sessions = await findSessions({ user: userId, valid: true });
+
+  return res.send(sessions);
+};
+
+export { createUserSessionHandler, getUserSessionsHandler };
