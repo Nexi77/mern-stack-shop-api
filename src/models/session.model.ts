@@ -16,6 +16,6 @@ const SessionSchema = new Schema(
   { timestamps: true }
 );
 
-const SessionModel = model('Session', SessionSchema);
+const SessionModel = model<SessionDocument>('Session', SessionSchema);
 
 export { SessionModel };

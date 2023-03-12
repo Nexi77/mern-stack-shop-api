@@ -1,5 +1,5 @@
 import { omit } from 'lodash';
-import { InferSchemaType } from 'mongoose';
+import { FilterQuery, InferSchemaType } from 'mongoose';
 import { UserDocument, UserModel } from 'src/models/user.model';
 
 const createUser = async (input: InferSchemaType<UserDocument>) => {
@@ -34,4 +34,8 @@ const validatePassword = async ({
   return omit(user.toJSON(), 'password');
 };
 
-export { createUser, validatePassword };
+const findUser = async (query: FilterQuery<UserDocument>) => {
+  return UserModel.findOne(query).lean();
+};
+
+export { createUser, validatePassword, findUser };
